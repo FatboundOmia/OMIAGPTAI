@@ -45,7 +45,8 @@ gha-creds-*.json
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-
+#PDF's
+*.pdf
 # Unit test / coverage reports
 htmlcov/
 .tox/

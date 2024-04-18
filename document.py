@@ -1,4 +1,13 @@
 
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+
 def document():
-    f = open('files\mobydick.txt', 'r')
-    return f.read()
+    loader = PyPDFDirectoryLoader(path="files")
+    data = loader.load_and_split()
+    return data
+
+
+if __name__ == '__main__':
+    document()
