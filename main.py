@@ -24,7 +24,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=2
 context = "\n\n".join(str(p.page_content) for p in text)
 texts = text_splitter.split_text(context)
 
-embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001',google_api_key=GOOGLE_API_KEY)
+embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001',google_api_key=GOOGLE_API_KEY, task_type='SEMANTIC_SIMILARITY')
 
 vector_index = Chroma.from_texts(texts, embeddings).as_retriever()
 
@@ -46,8 +46,7 @@ def pregunta(question):
     chain = load_qa_chain(model, chain_type='stuff', prompt=prompt)
 
     response = chain.invoke(
-        {"input_documents":docs, "question":question}, return_only_outputs=True 
-    )
+        {"input_documents":docs, "question":question})
 
     return response["output_text"]
 
