@@ -1,14 +1,10 @@
-from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI
-from IPython.display import Markdown
-from IPython.display import display
-import textwrap
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 import google.generativeai as genai
 from langchain.prompts import PromptTemplate
 from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 import document
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 
 GOOGLE_API_KEY = 'AIzaSyB0hf-O1dIEyx09hmxvDYo0dwWH6O_WrLc'
@@ -30,7 +26,7 @@ vector_index = Chroma.from_texts(texts, embeddings).as_retriever()
 
 
 def pregunta(question):
-    
+    from langchain_google_genai import ChatGoogleGenerativeAI
     docs = vector_index.get_relevant_documents(query=question)
 
     promp_template = """
@@ -42,18 +38,10 @@ def pregunta(question):
 
     prompt = PromptTemplate(template=promp_template, input_variables=["context","question"])
 
-    model = ChatGoogleGenerativeAI(model='gemini-pro', temperature=0.9, google_api_key=GOOGLE_API_KEY)
+    model = ChatGoogleGenerativeAI(model='gemini-pro', temperature=1, google_api_key=GOOGLE_API_KEY)
     chain = load_qa_chain(model, chain_type='stuff', prompt=prompt)
 
     response = chain.invoke(
         {"input_documents":docs, "question":question})
 
     return response["output_text"]
-
-
-while True:
-    question = str(input("Que deseas preguntar sobre el manual: "))
-    print('=='*50)
-    print(pregunta(question))
-    print('=='*50)
-
