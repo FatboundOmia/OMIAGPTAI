@@ -30,15 +30,17 @@ def pregunta(question):
     docs = vector_index.get_relevant_documents(query=question)
 
     promp_template = """
-    Responde lo mas claro posible y utilizando tus base de conocimientos para responder
+    Quiero que respondas lo mas claro y conciso posible. Puedes utilizar tu imaginación para responder las preguntas.
     {context}
     question :
     {question}
+    
+    siempre a tus repuestas agrega la fuente de información
     """
 
     prompt = PromptTemplate(template=promp_template, input_variables=["context","question"])
 
-    model = ChatGoogleGenerativeAI(model='gemini-pro', temperature=1, google_api_key=GOOGLE_API_KEY)
+    model = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=0.2, google_api_key=GOOGLE_API_KEY )
     chain = load_qa_chain(model, chain_type='stuff', prompt=prompt)
 
     response = chain.invoke(
