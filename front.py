@@ -56,6 +56,7 @@ st.sidebar.button('Clear Chat History', on_click=clear_chat)
 st.title("👨‍💻OMIA GPT COPILOT")
 st.caption('💬OMIA GPT COPILOT POWERED BY MAINTANCE🛠')
 
+
 if "message" not in st.session_state.keys():
     st.session_state["message"] = [{'role':'assistant', "content":"¿Como te puedo ayudar hoy?"}]
 
