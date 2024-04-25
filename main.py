@@ -30,17 +30,17 @@ def pregunta(question):
     docs = vector_index.get_relevant_documents(query=question)
 
     promp_template = """
-    Quiero que respondas lo mas claro y conciso posible. Puedes utilizar tu imaginación para responder las preguntas.
-    {context}
-    question :
-    {question}
-    
-    siempre a tus repuestas agrega la fuente de información
+        Answer the question, if the answer is not in
+        provided context just say, "I'm OMIA GPT AI, I only response reliability and maintenance question"\n\n
+        Context:\n {context}?\n
+        Question: \n{question}\n
+        Please always add the source the information and response in english always.
+        Answer:
     """
 
     prompt = PromptTemplate(template=promp_template, input_variables=["context","question"])
 
-    model = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=0.2, google_api_key=GOOGLE_API_KEY )
+    model = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=0.6, google_api_key=GOOGLE_API_KEY )
     chain = load_qa_chain(model, chain_type='stuff', prompt=prompt)
 
     response = chain.invoke(

@@ -42,7 +42,7 @@ st.set_page_config(
 
 
 def clear_chat():
-    st.session_state["message"] = [{'role':'assistant', "content":"¿Como te puedo ayudar hoy?"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
 
 
 with st.sidebar:
@@ -51,13 +51,16 @@ with st.sidebar:
     sus actividades de mantenimiento. Con esta herramienta, 
     se garantiza una gestión proactiva y eficaz de los procesos, asegurando un funcionamiento óptimo y una mayor confiabilidad de los activos de OMIA
     """
+    st.markdown('---')
+    st.button('Clear Chat History', on_click=clear_chat, )
+    
 
-st.sidebar.button('Clear Chat History', on_click=clear_chat)
-st.title("👨‍💻OMIA GPT COPILOT")
-st.caption('💬OMIA GPT COPILOT POWERED BY MAINTANCE🛠')
+
+st.title("👨‍💻OMIA GPT AI")
+st.caption('💬OMIA GPT AI POWERED BY MAINTANCE🛠')
 
 if "message" not in st.session_state.keys():
-    st.session_state["message"] = [{'role':'assistant', "content":"¿Como te puedo ayudar hoy?"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
 
 for msg in st.session_state.message:
     if msg['role'] == "assistant":
