@@ -12,8 +12,6 @@ def get_base64(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-
-
 def set_background(png_file):
     bin_str = get_base64(png_file)
     page_bg_img = '''
@@ -30,16 +28,12 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-
-
-
 st.set_page_config(
     page_title='OMIA GPT AI', 
     layout='wide',
     page_icon='images\OMIA-LOGO.ico'
     
 )
-
 
 def clear_chat():
     st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
@@ -80,7 +74,6 @@ if prompt := st.chat_input():
     response = pregunta(prompt)
     st.session_state.message.append({'role':'assistant', 'content':response})
     st.chat_message("assistant", avatar='images\OMIA-LOGO.ico').write(response)
-
 
 
 
