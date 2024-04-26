@@ -1,2 +1,28 @@
 [theme]
-secondaryBackgroundColor="#1b4980"
+
+# Primary accent color for interactive elements.
+primaryColor = "#E694FF"
+
+# Background color for the main content area.
+backgroundColor = "#00172B"
+
+# Background color used for the sidebar and most interactive widgets.
+secondaryBackgroundColor = "#17406b"
+
+# Color used for almost all text.
+textColor = "#FFF"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
