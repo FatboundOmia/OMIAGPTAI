@@ -65,8 +65,6 @@ def get_base64(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-
-
 def set_background(png_file):
     bin_str = get_base64(png_file)
     page_bg_img = '''
@@ -84,13 +82,21 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
+<<<<<<< HEAD
 
 
 
-
+=======
+st.set_page_config(
+    page_title='OMIA GPT AI', 
+    layout='wide',
+    page_icon='images\OMIA-LOGO.ico'
+    
+)
+>>>>>>> front
 
 def clear_chat():
-    st.session_state["message"] = [{'role':'assistant', "content":"¿Como te puedo ayudar hoy?"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
 
 
 with st.sidebar:
@@ -99,13 +105,17 @@ with st.sidebar:
     sus actividades de mantenimiento. Con esta herramienta, 
     se garantiza una gestión proactiva y eficaz de los procesos, asegurando un funcionamiento óptimo y una mayor confiabilidad de los activos de OMIA
     """
+    st.markdown('---')
+    st.button('Clear Chat History', on_click=clear_chat, )
+    
 
-st.sidebar.button('Clear Chat History', on_click=clear_chat)
-st.title("👨‍💻OMIA GPT COPILOT")
-st.caption('💬OMIA GPT COPILOT POWERED BY MAINTANCE🛠')
+
+st.title("👨‍💻OMIA GPT AI")
+st.caption('💬OMIA GPT AI POWERED BY MAINTANCE🛠')
+
 
 if "message" not in st.session_state.keys():
-    st.session_state["message"] = [{'role':'assistant', "content":"¿Como te puedo ayudar hoy?"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
 
 for msg in st.session_state.message:
     if msg['role'] == "assistant":
@@ -124,7 +134,6 @@ if prompt := st.chat_input():
     response = pregunta(prompt)
     st.session_state.message.append({'role':'assistant', 'content':response})
     st.chat_message("assistant", avatar='images\OMIA-LOGO.ico').write(response)
-
 
 
 
