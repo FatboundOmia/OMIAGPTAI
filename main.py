@@ -8,6 +8,7 @@ import document
 import os 
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -26,7 +27,6 @@ texts = text_splitter.split_text(context)
 embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001',google_api_key=GOOGLE_API_KEY, task_type='SEMANTIC_SIMILARITY')
 
 vector_index = Chroma.from_texts(texts, embeddings).as_retriever()
-
 
 def pregunta(question):
     from langchain_google_genai import ChatGoogleGenerativeAI

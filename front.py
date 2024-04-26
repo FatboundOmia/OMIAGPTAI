@@ -7,6 +7,59 @@ from PIL import Image
 
 subprocess.run(["python", "main.py"])
 
+st.set_page_config(
+    page_title='OMIA GPT AI', 
+    layout='wide',
+    page_icon='images\OMIA-LOGO.ico'
+    
+)
+
+# st.markdown(
+#     """
+# <style>
+# .css-nzvw1x {
+#     background-color: #061E42 !important;
+#     background-image: none !important;
+# }
+# .css-1aw8i8e {
+#     background-image: none !important;
+#     color: #FFFFFF !important
+# }
+# .css-ecnl2d {
+#     background-color: #496C9F !important;
+#     color: #496C9F !important
+# }
+# .css-15zws4i {
+#     background-color: #496C9F !important;
+#     color: #FFFFFF !important
+# }
+# </style>
+# """,
+#     unsafe_allow_html=True
+# )
+
+
+st.markdown(
+    """
+<style>
+.sidebar .sidebar-content {
+    background-image: linear-gradient(#2e7bcf,#2e7bcf);
+    color: white;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
+
+
+# def color_sidebar(color):
+#     st.markdown(f'<style>.stSidebar .css-n3p1cb {{background-color: {color};}}</style>', unsafe_allow_html=True)
+
+# codigo_color = "#337ab7"
+# color_sidebar(codigo_color)
+
+
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
@@ -27,18 +80,13 @@ def set_background(png_file):
     
     }
     </style>
+
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
 
 
-st.set_page_config(
-    page_title='OMIA GPT AI', 
-    layout='wide',
-    page_icon='images\OMIA-LOGO.ico'
-    
-)
 
 
 def clear_chat():
