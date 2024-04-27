@@ -82,18 +82,6 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-<<<<<<< HEAD
-
-
-
-=======
-st.set_page_config(
-    page_title='OMIA GPT AI', 
-    layout='wide',
-    page_icon='images\OMIA-LOGO.ico'
-    
-)
->>>>>>> front
 
 def clear_chat():
     st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
@@ -108,8 +96,6 @@ with st.sidebar:
     st.markdown('---')
     st.button('Clear Chat History', on_click=clear_chat, )
     
-
-
 st.title("👨‍💻OMIA GPT AI")
 st.caption('💬OMIA GPT AI POWERED BY MAINTANCE🛠')
 
