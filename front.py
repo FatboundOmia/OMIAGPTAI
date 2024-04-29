@@ -41,26 +41,38 @@ st.set_page_config(
 )
 
 
+
 def clear_chat():
-    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hola, yo soy agente de inteligencia artificial especialista en mantenimiento y confiabilidad. ¿En que te puedo ayudar?"}]
+
+#tex_1 =     """OMIA, impulsando el desarrollo y la innovación, haciendo uso de nuevas tecnologías de inteligencia artificial presenta su 1er agente diseñado para servir como chatbot entrenado en mantenimiento y confiabilidad. El entrenamiento se fundamentó en el aprovechamiento de modelos generativos contextualizados de manera especifica y en la vectorización de referencias bibliográficas respetando el derecho de los autores, mejores prácticas (SMRP), métricas clase mundial, estándares como la ISO 14224, ISO 55000 (gestión de activos). Adicionalmente, orientará sus respuestas con base en el modelo de gestión de servicio de OMIA.\t
+#    """ 
+text_2 =     """
+    El OMIA AI agent es capaz de soportar a nuestros profesionales de mantenimiento y confiabilidad en el dominio de terminologías técnicas específicas, conceptos, asistir de manera interpersonal en interpretaciones y análisis cualitativos con base en el procesamiento de datos e indicadores, generación de informes y datos estructurados insumos para la visualización de información. 
+    Este gran impulso tecnológico contribuirá con el fortalecimiento de las competencias técnicas de nuestros profesionales, permitirá unificar criterios, gestionar el conocimiento, soportar para mejorar en términos de eficiencia la interpretación y análisis para la toma de decisiones.
+    """
 
 
 with st.sidebar:
-    """El Chat de Mantenimiento de OMIA representa una innovadora herramienta automatizada diseñada para optimizar y simplificar los procesos de mantenimiento en OMIA. Esta solución está meticulosamente diseñada para integrarse con los estándares de calidad más exigentes, 
-    incluyendo las Buenas Prácticas de Ramesh Gulati, el análisis de datos de OMIA (ODA), ISO 14224, Buenas practicas de las SMRP, proporcionando así a los operadores, técnicos y profesionales de mantenimiento una solución integral para gestionar de manera eficiente y segura 
-    sus actividades de mantenimiento. Con esta herramienta, 
-    se garantiza una gestión proactiva y eficaz de los procesos, asegurando un funcionamiento óptimo y una mayor confiabilidad de los activos de OMIA
-    """
+#   st.markdown('<div style="text-align: justify;">{}</div>'.format(tex_1), unsafe_allow_html=True)
+    st.markdown('<div style="text-align: justify;">{}</div>'.format(text_2), unsafe_allow_html=True)
     st.markdown('---')
     st.button('Clear Chat History', on_click=clear_chat, )
     
 
 
-st.title("👨‍💻OMIA GPT AI")
-st.caption('💬OMIA GPT AI POWERED BY MAINTANCE🛠')
+#st.title("👨‍💻OMIA GPT AI") #todo Omia GPT: mantenimiento y confiabilidad
+
+col1, mid, col2 = st.columns([11,3,50])
+
+with col1:
+    st.image('images\Logo OMIA.png', width=200)
+
+with col2:
+    st.title('GPT AI: mantenimiento y confiabilidad', )
 
 if "message" not in st.session_state.keys():
-    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hi my name is OMIA GPT AI, how can I help you? today"}]
+    st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hola, yo soy agente de inteligencia artificial especialista en mantenimiento y confiabilidad. ¿En que te puedo ayudar?"}]
 
 for msg in st.session_state.message:
     if msg['role'] == "assistant":

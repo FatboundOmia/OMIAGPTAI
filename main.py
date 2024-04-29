@@ -12,8 +12,6 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('gemini-pro')
 
-
-
 text = document.document()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=200)
@@ -32,9 +30,11 @@ def pregunta(question):
     promp_template = """
         Answer the question, if the answer is not in
         provided context just say, "I'm OMIA GPT AI, I only response reliability and maintenance question"\n\n
+        \n\n if the user make the question "what is your name or similar" respond "I'm OMIA GPT AI"
         Context:\n {context}?\n
         Question: \n{question}\n
-        Please always add the source the information and response in english always.
+        Please always add the source the information with autor and response in spanish always.
+        respond without markdowmn. 
         Answer:
     """
 
