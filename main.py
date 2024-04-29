@@ -5,9 +5,13 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 import document
+import os 
+from dotenv import load_dotenv
 
 
-GOOGLE_API_KEY = 'AIzaSyB0hf-O1dIEyx09hmxvDYo0dwWH6O_WrLc'
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('gemini-pro')
@@ -21,7 +25,6 @@ texts = text_splitter.split_text(context)
 embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001',google_api_key=GOOGLE_API_KEY, task_type='SEMANTIC_SIMILARITY')
 
 vector_index = Chroma.from_texts(texts, embeddings).as_retriever()
-
 
 def pregunta(question):
     from langchain_google_genai import ChatGoogleGenerativeAI
