@@ -10,7 +10,7 @@ subprocess.run(["python", "main.py"])
 st.set_page_config(
     page_title='OMIA GPT AI', 
     layout='wide',
-    page_icon='images\OMIA-LOGO.ico'
+    page_icon='/app/images/OMIA-LOGO.ico'
     
 )
 
@@ -107,7 +107,7 @@ with st.sidebar:
 col1, mid, col2 = st.columns([11,3,50])
 
 with col1:
-    st.image('images\Logo OMIA.png', width=200)
+    st.image('/app/images/Logo OMIA.png', width=200)
 
 with col2:
     st.title('GPT AI: mantenimiento y confiabilidad', )
@@ -117,7 +117,7 @@ if "message" not in st.session_state.keys():
 
 for msg in st.session_state.message:
     if msg['role'] == "assistant":
-        with st.chat_message(msg['role'], avatar='images\OMIA-LOGO.ico'):
+        with st.chat_message(msg['role'], avatar='/app/images/OMIA-LOGO.ico'):
             st.write(msg["content"])
     else:
         with st.chat_message(msg['role']):
@@ -131,7 +131,7 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     response = pregunta(prompt)
     st.session_state.message.append({'role':'assistant', 'content':response})
-    st.chat_message("assistant", avatar='images\OMIA-LOGO.ico').write(response)
+    st.chat_message("assistant", avatar='/app/images/OMIA-LOGO.ico').write(response)
 
 
 

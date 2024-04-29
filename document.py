@@ -7,7 +7,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 def document():
     data_final = []
     loader = PyPDFDirectoryLoader(path="files")
-    loader_2 = CSVLoader(file_path="files\ODA.csv", autodetect_encoding=True)
+    loader_2 = CSVLoader(file_path="/app/files/ODA.csv", autodetect_encoding=True)
     data_final.extend(loader.load_and_split())
     data_final.extend(loader_2.load())
     return data_final
