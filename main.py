@@ -43,7 +43,7 @@ def pregunta(question):
 
     prompt = PromptTemplate(template=promp_template, input_variables=["context","question"])
 
-    model = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=0.6, google_api_key=GOOGLE_API_KEY )
+    model = ChatGoogleGenerativeAI(model='gemini-1.5-pro-latest', temperature=0.6, google_api_key=GOOGLE_API_KEY)
     chain = load_qa_chain(model, chain_type='stuff', prompt=prompt)
 
     response = chain.invoke(
