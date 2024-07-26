@@ -5,6 +5,12 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 
 def document():
+    """Función que carga todos los archivos PDF, con su directorio
+
+    Returns:
+        List: Se retorna una lista con todos los archivos de de PDF que van a ser cargados
+        en el chat
+    """
     data_final = []
     loader = PyPDFDirectoryLoader(path="files")
     data_final.extend(loader.load_and_split())

@@ -5,14 +5,14 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, GoogleGenerativ
 import base64
 from PIL import Image
 
-subprocess.run(["python", "main.py"])
+subprocess.run(["python", "main.py"])#Proceso que ejecuta main enseguida se ejecuta este codigo
 
 st.set_page_config(
     page_title='OMIA GPT AI', 
     layout='wide',
     page_icon='images\OMIA-LOGO.ico'
     
-)
+) # Sección de codigo que permite colocar configuraciones inciales de el chat del omia GPT AI
 
 # st.markdown(
 #     """
@@ -49,7 +49,7 @@ st.markdown(
 </style>
 """,
     unsafe_allow_html=True,
-)
+) 
 
 
 
@@ -61,11 +61,24 @@ st.markdown(
 
 
 def get_base64(bin_file):
+    """Funcion que permite decodificar mis archivos base 64
+
+    Args:
+        bin_file (str): str que contiene la cadena de caracteres en base 64 del file
+
+    Returns:
+        file: Retorna el archivo decodificado en base 64
+    """
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
 def set_background(png_file):
+    """función que coloca la imagen del background
+
+    Args:
+        png_file (binary field): imagen que se desea colocar detras e el background del chat
+    """
     bin_str = get_base64(png_file)
     page_bg_img = '''
     <style>
@@ -84,6 +97,9 @@ def set_background(png_file):
 
 
 def clear_chat():
+    """
+    Función que permite limpiar el chat y poner de mensaje inicial del LLM
+    """
     st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hola, yo soy agente de inteligencia artificial especialista en mantenimiento y confiabilidad. ¿En que te puedo ayudar?"}]
 
 #tex_1 =     """OMIA, impulsando el desarrollo y la innovación, haciendo uso de nuevas tecnologías de inteligencia artificial presenta su 1er agente diseñado para servir como chatbot entrenado en mantenimiento y confiabilidad. El entrenamiento se fundamentó en el aprovechamiento de modelos generativos contextualizados de manera especifica y en la vectorización de referencias bibliográficas respetando el derecho de los autores, mejores prácticas (SMRP), métricas clase mundial, estándares como la ISO 14224, ISO 55000 (gestión de activos). Adicionalmente, orientará sus respuestas con base en el modelo de gestión de servicio de OMIA.\t
@@ -95,6 +111,7 @@ text_2 =     """
 
 
 with st.sidebar:
+    #Configuraciones del sidebar para que sea estetico. 
 #   st.markdown('<div style="text-align: justify;">{}</div>'.format(tex_1), unsafe_allow_html=True)
     st.markdown('<div style="text-align: justify;">{}</div>'.format(text_2), unsafe_allow_html=True)
     st.markdown('---')
@@ -107,15 +124,19 @@ with st.sidebar:
 col1, mid, col2 = st.columns([11,3,50])
 
 with col1:
+    #Imagen de OMIA
     st.image('images\Logo OMIA.png', width=200)
 
 with col2:
+    #Titulo del CHAT
     st.title('GPT AI: mantenimiento y confiabilidad', )
 
 if "message" not in st.session_state.keys():
+    #Mesnaje inicial cuando inicia el chat.
     st.session_state["message"] = [{'role':'assistant', "content":"🖐 Hola, yo soy agente de inteligencia artificial especialista en mantenimiento y confiabilidad. ¿En que te puedo ayudar?"}]
 
 for msg in st.session_state.message:
+    #Ciclo que me permite colocar la imagenes pertenecientes a el LLM y al usuario
     if msg['role'] == "assistant":
         with st.chat_message(msg['role'], avatar='images\OMIA-LOGO.ico'):
             st.write(msg["content"])
@@ -126,7 +147,8 @@ for msg in st.session_state.message:
         
 
 if prompt := st.chat_input():
-    
+    """Sentencia que me permite hacer todo el ciclo de la pregunta desde el prompt hasta la respuesta del usuario
+    """
     st.session_state.message.append({"role":'user', "content":prompt})
     st.chat_message("user").write(prompt)
     response = pregunta(prompt)

@@ -9,13 +9,18 @@ import os
 from dotenv import load_dotenv
 
 
-load_dotenv()
+load_dotenv()# Cargo archivo que contine mis variables de entorno
+
+
+#####################################
+#Sección de codigo en el que cargo el modelo de LLM
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel('gemini-pro')
-
+############################################
+#Sección de codigo que carga los PDF y lo pone en chunks y hace un embedding con ellos
 text = document.document()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=200)
@@ -26,7 +31,14 @@ embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001',google_ap
 
 vector_index = Chroma.from_texts(texts, embeddings).as_retriever()
 
+############################################
+
 def pregunta(question):
+    """
+    Función que ingresa la pregunta en mi llm y en mi prompt para ser mandada al agente
+    Retorna la respuesta del LLM
+    
+    """
     from langchain_google_genai import ChatGoogleGenerativeAI
     docs = vector_index.get_relevant_documents(query=question)
 
